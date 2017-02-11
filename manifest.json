@@ -3,6 +3,7 @@
 	"name": "StandUp!",
 	"version": "1.0",
 	"description": "Notifies the user after a specified interval to get up and stretch a bit.",
+	"homepage_url": "https://github.com/Azlond/StandUp",
 	"icons": {
 		"32": "icons/icon-32.png",
 		"48": "icons/icon-48.png",
