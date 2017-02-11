@@ -1,3 +1,5 @@
 CSS for settings page
 fix JS-alert bug concerning mozilla/firefox-internal pages
 add toolbar-icon with timer till next alert
+Remove "save"-button from settings
+JS-Alert-Setting should not reset alarm

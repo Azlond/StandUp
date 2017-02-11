@@ -14,7 +14,7 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/	
+*/
 
 var alarm;
 var openAlert = false;
@@ -94,31 +94,36 @@ function handleAlarm(alarmInfo) {
 	var currentdate = new Date();
 
 	var jsAlert = browser.storage.local.get("jsAlert");
-	if (!jsAlert || jsAlert === undefined) {
-		jsAlert = false;
-	}
-
-
-	if (jsAlert) {
-		if (!openAlert) {
-			openAlert = true;
-			try {
-				browser.tabs.executeScript({
-					file: "alert.js"
-				});
-			} catch (error) {
-				openAlert = false;
-				/*TODO: find a way to set openAlert to false when the active tab belongs to mozilla*/
+	jsAlert.then(function (item) {
+		var showAlert;
+		console.log(item);
+		if (!item.jsAlert) {
+			showAlert = false;
+		} else {
+			showAlert = item.jsAlert;
+		}
+		
+		if (showAlert) {
+			if (!openAlert) {
+				openAlert = true;
+				try {
+					browser.tabs.executeScript({
+						file: "alert.js"
+					});
+				} catch (error) {
+					openAlert = false;
+					/*TODO: find a way to set openAlert to false when the active tab belongs to mozilla*/
+				}
 			}
 		}
-	}
-
+	});
 }
 
 function messageHandler(message) {
 	if (message === "settings") {
 		createAlarm();
 	} else {
+		console.log("test");
 		openAlert = false;
 	}
 }
