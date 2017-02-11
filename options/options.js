@@ -36,7 +36,6 @@ function restoreOptions() {
 			document.getElementById("jsA").checked = item.jsAlert;
 		}
 	}, function (error) {
-		console.log(error);
 		document.getElementById("jsA").checked = false;
 	});
 }

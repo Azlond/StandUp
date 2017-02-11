@@ -38,7 +38,6 @@ function initialize() {
 			setDefaultIntervalStorage();
 		}
 	}, function (error) { //error
-		console.log(error);
 		setDefaultIntervalStorage();
 	});
 
@@ -49,7 +48,6 @@ function initialize() {
 			setDefaultIntervalStorage();
 		}
 	}, function (error) {
-		console.log(error);
 		setDefaultIntervalStorage();
 	});
 
@@ -68,9 +66,7 @@ function setAlarm(interval) {
 }
 
 function createAlarm() {
-	browser.alarms.clear("StandUp").then(function (i) {
-		console.log(i);
-	});
+	browser.alarms.clear("StandUp").then(function (i) {});
 	var interval;
 	var intervalPromise = browser.storage.local.get("interval");
 	intervalPromise.then(function (item) { //success
@@ -81,7 +77,6 @@ function createAlarm() {
 		}
 		setAlarm(interval);
 	}, function (error) { //error
-		console.log(error);
 		interval = 30;
 		setAlarm(interval);
 	});
@@ -97,7 +92,6 @@ function handleAlarm(alarmInfo) {
 			"message": "Show me your moves!"
 		});
 	var currentdate = new Date();
-	console.log("on alarm " + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds() + ": " + alarmInfo.name);
 
 	var jsAlert = browser.storage.local.get("jsAlert");
 	if (!jsAlert || jsAlert === undefined) {
@@ -113,7 +107,6 @@ function handleAlarm(alarmInfo) {
 					file: "alert.js"
 				});
 			} catch (error) {
-				console.log(error);
 				openAlert = false;
 				/*TODO: find a way to set openAlert to false when the active tab belongs to mozilla*/
 			}
@@ -128,10 +121,6 @@ function messageHandler(message) {
 	} else {
 		openAlert = false;
 	}
-}
-
-function settingsListener(message) {
-	console.log(message);
 }
 
 function isNumber(n) {
