@@ -96,7 +96,6 @@ function handleAlarm(alarmInfo) {
 	var jsAlert = browser.storage.local.get("jsAlert");
 	jsAlert.then(function (item) {
 		var showAlert;
-		console.log(item);
 		if (!item.jsAlert) {
 			showAlert = false;
 		} else {
@@ -123,7 +122,6 @@ function messageHandler(message) {
 	if (message === "settings") {
 		createAlarm();
 	} else {
-		console.log("test");
 		openAlert = false;
 	}
 }
